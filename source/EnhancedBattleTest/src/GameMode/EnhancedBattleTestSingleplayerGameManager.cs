@@ -14,7 +14,7 @@ namespace EnhancedBattleTest.GameMode
 {
     public class EnhancedBattleTestSingleplayerGameManager : SandBoxGameManager
     {
-        private int _seed = 1234;
+        //private int _seed = 1234;
         protected override void DoLoadingForGameManager(
           GameManagerLoadingSteps gameManagerLoadingStep,
           out GameManagerLoadingSteps nextStep)

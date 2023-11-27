@@ -58,7 +58,7 @@ namespace EnhancedBattleTest
 				{
 					try
 					{
-						GameEntity.Instantiate(scene, "dust_prefab_entity", base.Mission.GetSceneMiddleFrame().ToGroundMatrixFrame());
+						//GameEntity.Instantiate(scene, "dust_prefab_entity", base.Mission.GetSceneMiddleFrame().ToGroundMatrixFrame());
 						scene.SetSkyBrightness((scene.TimeOfDay < 12f) ? ((MathF.Pow(2f, scene.TimeOfDay) - 1f) / 10f) : ((MathF.Pow(2f, 24f - scene.TimeOfDay) - 1f) / 10f));
 						this._dustSound = SoundEvent.CreateEvent(SoundEvent.GetEventIdFromString("dust_storm"), scene);
 						this._dustSound.Play();

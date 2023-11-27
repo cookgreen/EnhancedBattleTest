@@ -3,10 +3,11 @@
 A mod for Mount&Blade Bannerlord that provides more powerful custom battle.
 
 ## Version  
-v1.1.0  
+v1.1.6  
 
 ## Mod File
 [Release v1.0.2](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.0.2)
+[Release v1.1.6](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.1.6)
 
 ## Features
 - You can choose multiplayer characters or singleplayer characters that are used in campaign mode.

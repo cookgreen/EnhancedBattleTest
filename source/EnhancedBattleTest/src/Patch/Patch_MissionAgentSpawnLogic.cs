@@ -9,8 +9,9 @@ namespace EnhancedBattleTest.Patch
 {
     public class Patch_MissionAgentSpawnLogic
     {
-        public static bool SpawnTroops_Prefix(int number, bool isReinforcement, bool enforceSpawningOnInitialPoint, ref int __result,
-            IMissionTroopSupplier ____troopSupplier, List<IAgentOriginBase> ____preSuppliedTroops,
+        public static bool SpawnTroops_Prefix(int number, bool isReinforcement,
+            ref int __result,
+            IMissionTroopSupplier ____troopSupplier, List<IAgentOriginBase> ____reservedTroops,
             bool ____spawnWithHorses, BattleSideEnum ____side, MBList<Formation> ____spawnedFormations)
         {
             if (number <= 0)
@@ -20,14 +21,17 @@ namespace EnhancedBattleTest.Patch
             }
             int formationTroopIndex = 0;
             List<IAgentOriginBase> list = new List<IAgentOriginBase>();
-            int preSuppliedCount = Math.Min(____preSuppliedTroops.Count, number);
+            int preSuppliedCount = Math.Min(____reservedTroops.Count, number);
             if (preSuppliedCount > 0)
             {
                 for (int index = 0; index < preSuppliedCount; ++index)
-                    list.Add(____preSuppliedTroops[index]);
-                ____preSuppliedTroops.RemoveRange(0, preSuppliedCount);
+                    list.Add(____reservedTroops[index]);
+                ____reservedTroops.RemoveRange(0, preSuppliedCount);
             }
-            list.AddRange(____troopSupplier.SupplyTroops(number - preSuppliedCount));
+            int numberToAllocate = number - preSuppliedCount;
+            list.AddRange(____troopSupplier.SupplyTroops(numberToAllocate));
+
+
             for (int index = 0; index < 8; ++index)
             {
                 var originToSpawn = new List<EnhancedBattleTestAgentOrigin>();
@@ -75,7 +79,7 @@ namespace EnhancedBattleTest.Patch
                             ____spawnedFormations.Add(formation);
                         }
                         agentOriginBase.SpawnTroop(____side, true, ____spawnWithHorses, isReinforcement,
-                                enforceSpawningOnInitialPoint, count, formationTroopIndex, true, true,
+                                enforceSpawningOnInitialPoint: false, count, formationTroopIndex, true, true,
                                 false, null, null);
                         ++formationTroopIndex;
                     }
@@ -93,9 +97,13 @@ namespace EnhancedBattleTest.Patch
             }
             foreach (Team team in Mission.Current.Teams)
             {
-                foreach (Formation formation in team.Formations)
+                foreach (Formation formation in team.FormationsIncludingEmpty)
                 {
-                    formation.GroupSpawnIndex = 0;
+                    // formation.GroupSpawnIndex = 0;
+                    if (formation.CountOfUnits > 0 && formation.IsSpawning)
+                    {
+                        formation.EndSpawn();
+                    }
                 }
             }
             __result = formationTroopIndex;

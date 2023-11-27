@@ -24,9 +24,9 @@ namespace EnhancedBattleTest.UI.MissionUI
             _preloadDone = true;
         }
 
-        public override void OnMissionDeactivate()
+        public override void OnMissionScreenDeactivate()
         {
-            base.OnMissionDeactivate();
+            base.OnMissionScreenDeactivate();
             _helperInstance.Clear();
         }
     }

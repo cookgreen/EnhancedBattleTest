@@ -159,7 +159,7 @@ namespace EnhancedBattleTest
 			}
 		}
 
-		public override void HandleOnCloseMission()
+		protected override void OnEndMission()
 		{
 			SoundEvent rainSound = this._rainSound;
 			if (rainSound != null)

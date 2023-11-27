@@ -18,10 +18,10 @@ namespace EnhancedBattleTest.Patch.Fix
             {
                 _harmony.Patch(
                     typeof(DeploymentMissionController).GetMethod(
-                        nameof(DeploymentMissionController.FinishPlayerDeployment),
+                        nameof(DeploymentMissionController.FinishDeployment),
                         BindingFlags.Instance | BindingFlags.Public),
                     prefix: new HarmonyMethod(typeof(Patch_DeploymentMissionController).GetMethod(
-                        nameof(Prefix_FinishPlayerDeployment),
+                        nameof(Prefix_FinishDeployment),
                         BindingFlags.Static | BindingFlags.Public)));
             }
             catch (Exception)
@@ -40,11 +40,15 @@ namespace EnhancedBattleTest.Patch.Fix
         //    __instance._mission.GetMissionBehavior<AssignPlayerRoleInTeamMissionController>().OnPlayerChoiceMade(battleFormationItemVm.Formation.Index, true);
         // The issue is that the Agent.Main is null and the commander of the first formation is also null.
         // Then the null agent will be assigned as sergeant of the first formation.
-        public static bool Prefix_FinishPlayerDeployment(DeploymentMissionController __instance, BattleDeploymentHandler ____battleDeploymentHandler, bool ____isPlayerAttacker, MissionAgentSpawnLogic ___MissionAgentSpawnLogic)
+        public static bool Prefix_FinishDeployment(
+            DeploymentMissionController __instance,
+            BattleDeploymentHandler ____battleDeploymentHandler,
+            bool ____isPlayerAttacker,
+            MissionAgentSpawnLogic ___MissionAgentSpawnLogic)
         {
             if (__instance.Mission.MainAgent == null)
             {
-                __instance.OnBeforePlayerDeploymentFinished();
+                __instance.OnBeforeDeploymentFinished();
                 if (____isPlayerAttacker)
                 {
                     foreach (Agent agent in __instance.Mission.Agents)
@@ -58,11 +62,9 @@ namespace EnhancedBattleTest.Patch.Fix
                         }
                     }
                 }
-                typeof(DeploymentMissionController)
-                    .GetMethod("InvokePlayerDeploymentFinish", BindingFlags.Instance | BindingFlags.NonPublic)
-                    .Invoke(__instance, new object[] { });
-                //__instance.InvokePlayerDeploymentFinish();
-                Mission.Current.IsTeleportingAgents = false;
+                //Mission.Current.IsTeleportingAgents = false;
+                __instance.Mission.IsTeleportingAgents = false;
+                Mission.Current.OnDeploymentFinished();
                 foreach (Agent agent in __instance.Mission.Agents)
                 {
                     if (agent.IsAIControlled)
@@ -82,7 +84,8 @@ namespace EnhancedBattleTest.Patch.Fix
                 //mainAgent.Controller = Agent.ControllerType.Player;
                 Mission.Current.AllowAiTicking = true;
                 __instance.Mission.DisableDying = false;
-                ___MissionAgentSpawnLogic.SetReinforcementsSpawnTimerEnabled(true);
+                ___MissionAgentSpawnLogic.SetReinforcementsSpawnEnabled(value: true);
+                __instance.OnAfterDeploymentFinished();
                 __instance.Mission.RemoveMissionBehavior(__instance);
                 return false;
             }

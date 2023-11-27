@@ -73,11 +73,11 @@ namespace EnhancedBattleTest.Multiplayer.Data.MissionData
             {
                 Formation formation = team.GetFormation(MPCharacter.FormationIndex);
                 agentBuildData.Formation(formation);
-                agentBuildData.FormationTroopCount(formationTroopCount).FormationTroopIndex(formationTroopIndex);
+                agentBuildData.FormationTroopSpawnCount(formationTroopCount).FormationTroopSpawnIndex(formationTroopIndex);
             }
             if (MPCharacter.IsPlayer)
                 agentBuildData.Controller(Agent.ControllerType.Player);
-            Agent agent = Mission.Current.SpawnAgent(agentBuildData, false, formationTroopCount);
+            Agent agent = Mission.Current.SpawnAgent(agentBuildData, false);
             if (agent.IsAIControlled & isAlarmed)
                 agent.SetWatchState(Agent.WatchState.Alarmed);
             if (wieldInitialWeapons)

@@ -2,7 +2,7 @@
 
 A mod for Mount&Blade Bannerlord that provides more powerful custom battle.
 
-## Version  
+## Current Version  
 v1.1.6  
 
 ## Mod File

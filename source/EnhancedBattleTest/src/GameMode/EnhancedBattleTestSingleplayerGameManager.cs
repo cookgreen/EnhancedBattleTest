@@ -74,15 +74,21 @@ namespace EnhancedBattleTest.GameMode
 
         public override void OnLoadFinished()
         {
-            if (CampaignSiegeTestStatic.IsSiegeTestBuild)
-                CampaignSiegeTestStatic.DisableSiegeTest();
+            //if (CampaignSiegeTestStatic.IsSiegeTestBuild)
+            //    CampaignSiegeTestStatic.DisableSiegeTest();
+
             Game.Current.GameStateManager.OnSavedGameLoadFinished();
             Game.Current.GameStateManager.CleanAndPushState((GameState)Game.Current.GameStateManager.CreateState<MapState>());
-            PartyBase.MainParty.Visuals?.SetMapIconAsDirty();
-            TaleWorlds.CampaignSystem.Campaign.Current.CampaignInformationManager.OnGameLoaded();
+            PartyBase.MainParty.SetVisualAsDirty();
+			TaleWorlds.CampaignSystem.Campaign.Current.CampaignInformationManager.OnGameLoaded();
+            
             foreach (Settlement settlement in Settlement.All)
-                settlement.Party.Visuals.RefreshLevelMask(settlement.Party);
+            {
+                settlement.Party.OnLevelMaskUpdated();
+            }
+
             CampaignEventDispatcher.Instance.OnGameLoadFinished();
+            
             if (Game.Current.GameStateManager.ActiveState is MapState activeState)
                 activeState.OnLoadingFinished();
 

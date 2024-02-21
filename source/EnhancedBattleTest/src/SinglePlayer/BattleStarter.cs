@@ -302,7 +302,7 @@ namespace EnhancedBattleTest.SinglePlayer
                 _originalParties.Clear();
                 _originalSettlements.Clear();
                 _bannerSave.Clear();
-                Campaign.Current.MainParty.Party.Visuals?.SetMapIconAsDirty();
+                Campaign.Current.MainParty.Party.SetVisualAsDirty();
                 IsEnhancedBattleTestBattle = false;
             }
             catch (Exception e)
@@ -326,7 +326,7 @@ namespace EnhancedBattleTest.SinglePlayer
                 }
             }
 
-            return CampaignData.NeutralFaction;
+            return null;
         }
 
         private static void ResetMapEventSide(PartyBase partyBase)
@@ -357,10 +357,10 @@ namespace EnhancedBattleTest.SinglePlayer
             rec.PlayingInCampaignMode = true;
             rec.RandomTerrainSeed = MBRandom.RandomInt(10000);
             rec.AtmosphereOnCampaign = AtmosphereModel.CreateAtmosphereInfoForMission(config.MapConfig.Season, config.MapConfig.TimeOfDay, true);
-            rec.AtlasGroup = 2;
+            rec.DecalAtlasGroup = 2;
             if (config.BattleTypeConfig.BattleType == BattleType.Field && !config.MapConfig.OverridesPlayerPosition)
             {
-                rec.AtmosphereOnCampaign = Campaign.Current.Models.MapWeatherModel.GetAtmosphereModel(CampaignTime.Now, MobileParty.MainParty.GetLogicalPosition());
+                rec.AtmosphereOnCampaign = Campaign.Current.Models.MapWeatherModel.GetAtmosphereModel(/*CampaignTime.Now, */MobileParty.MainParty.GetLogicalPosition());
                 float num = Campaign.CurrentTime % 24f;
                 if (Campaign.Current != null)
                     rec.TimeOfDay = num;

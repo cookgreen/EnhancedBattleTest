@@ -52,7 +52,7 @@ namespace EnhancedBattleTest.GameMode
             gameStarter.AddModel(new MultiplayerApplyWeatherEffectsModel());
             //gameStarter.AddModel(new MultiplayerAgentApplyDamageModel());
             gameStarter.AddModel(new DefaultRidingModel());
-            gameStarter.AddModel(new MultiplayerStrikeMagnitudeModel());
+            //gameStarter.AddModel(new MultiplayerStrikeMagnitudeModel());
             gameStarter.AddModel(new MultiplayerBattleMoraleModel());
         }
 

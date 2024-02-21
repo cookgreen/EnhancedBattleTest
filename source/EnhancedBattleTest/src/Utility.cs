@@ -306,7 +306,7 @@ namespace EnhancedBattleTest
                     }
                 }
 
-                Campaign.Current.MapEventManager.StartBattleMapEvent(attacker, defender);
+                Campaign.Current.MapEventManager.StartSallyOutMapEvent(attacker, defender);
             }
             catch (Exception e)
             {

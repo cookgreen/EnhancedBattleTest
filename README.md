@@ -3,9 +3,10 @@
 A mod for Mount&Blade Bannerlord that provides more powerful custom battle.
 
 ## Current Version  
-v1.1.6  
+v1.2.8  
 
 ## Mod File
+[Release v1.2.8](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.2.8)
 [Release v1.1.6](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.1.6)  
 [Release v1.0.2](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.0.2)  
 

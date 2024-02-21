@@ -75,7 +75,7 @@ namespace EnhancedBattleTest.Patch
                         if (formation != null && !formation.HasBeenPositioned)
                         {
                             formation.BeginSpawn(count, isMounted && ____spawnWithHorses);
-                            Mission.Current.SpawnFormation(formation);
+                            Mission.Current.SetFormationPositioningFromDeploymentPlan(formation);
                             ____spawnedFormations.Add(formation);
                         }
                         agentOriginBase.SpawnTroop(____side, true, ____spawnWithHorses, isReinforcement,

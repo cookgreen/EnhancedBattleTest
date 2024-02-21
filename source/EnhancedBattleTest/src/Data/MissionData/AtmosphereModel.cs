@@ -47,7 +47,7 @@ namespace EnhancedBattleTest.Data.MissionData
             string atmosphereTypeName = isInSettlement ? "empire" : "field_battle";
             return new AtmosphereInfo()
             {
-                AtmosphereTypeName = atmosphereTypeName,
+                //AtmosphereTypeName = atmosphereTypeName,
                 AtmosphereName = atmosphereName,
                 TimeInfo = new TimeInformation
                 {

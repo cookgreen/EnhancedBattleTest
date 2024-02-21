@@ -50,7 +50,7 @@ namespace EnhancedBattleTest.Config
                 ? new Banner(BannerKey)
                 : (HasGeneral
                     ? (Generals.Troops[0].Character.CharacterObject as CharacterObject).HeroObject?.ClanBanner
-                    : null) ?? CampaignData.NeutralFaction.Banner;
+                    : null) ?? null;
         }
 
         public TeamConfig()

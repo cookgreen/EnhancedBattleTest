@@ -44,19 +44,19 @@ namespace EnhancedBattleTest.Patch
 
         public static void Init(AtmosphereInfo atmosphere, float timeOfDay)
         {
-            Atmosphere = atmosphere;
+			Atmosphere = atmosphere;
             TimeOfDay = timeOfDay;
         }
 
         public static void Reset()
-        {
-            Atmosphere = null;
-            TimeOfDay = null;
+		{
+			Atmosphere.AtmosphereName = null;
+			TimeOfDay = null;
         }
 
         public static void Postfix_CreateSandBoxMissionInitializerRecord(ref MissionInitializerRecord __result)
         {
-            if (BattleStarter.IsEnhancedBattleTestBattle && Atmosphere != null && TimeOfDay != null)
+            if (BattleStarter.IsEnhancedBattleTestBattle && Atmosphere.IsValid && TimeOfDay != null)
             {
                 __result.AtmosphereOnCampaign = Atmosphere;
                 __result.TimeOfDay = (float)TimeOfDay;

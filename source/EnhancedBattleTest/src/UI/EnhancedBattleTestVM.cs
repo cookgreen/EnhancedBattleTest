@@ -441,7 +441,8 @@ namespace EnhancedBattleTest.UI
             };
             foreach (SiegeEngineType attackerMeleeMachine in GetAllAttackerMeleeMachines())
                 inquiryElements.Add(new InquiryElement(attackerMeleeMachine, attackerMeleeMachine.Name.ToString(), null));
-            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(new TextObject("{=MVOWsP48}Select a Melee Machine").ToString(), string.Empty, inquiryElements, false, 1, GameTexts.FindText("str_done").ToString(), "", selectedElements => selectedSlot.SetMachineType(selectedElements.First().Identifier as SiegeEngineType), null));
+            MBInformationManager.ShowMultiSelectionInquiry(
+                new MultiSelectionInquiryData("{=MVOWsP48}Select a Melee Machine", string.Empty, inquiryElements, false, 1, inquiryElements.Count, GameTexts.FindText("str_done").ToString(), string.Empty, (selectedElements) => selectedSlot.SetMachineType(selectedElements.First().Identifier as SiegeEngineType), null));
         }
 
         private void OnAttackerRangedMachineSelection(CustomBattleSiegeMachineVM selectedSlot)
@@ -452,7 +453,7 @@ namespace EnhancedBattleTest.UI
             };
             foreach (SiegeEngineType attackerRangedMachine in GetAllAttackerRangedMachines())
                 inquiryElements.Add(new InquiryElement(attackerRangedMachine, attackerRangedMachine.Name.ToString(), null));
-            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(new TextObject("{=SLZzfNPr}Select a Ranged Machine").ToString(), string.Empty, inquiryElements, false, 1, GameTexts.FindText("str_done").ToString(), "", selectedElements => selectedSlot.SetMachineType(selectedElements[0].Identifier as SiegeEngineType), null));
+            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(new TextObject("{=SLZzfNPr}Select a Ranged Machine").ToString(), string.Empty, inquiryElements, false, 1, inquiryElements.Count, GameTexts.FindText("str_done").ToString(), "", selectedElements => selectedSlot.SetMachineType(selectedElements[0].Identifier as SiegeEngineType), null));
         }
 
         private void OnDefenderRangedMachineSelection(CustomBattleSiegeMachineVM selectedSlot)
@@ -463,7 +464,7 @@ namespace EnhancedBattleTest.UI
             };
             foreach (SiegeEngineType defenderRangedMachine in GetAllDefenderRangedMachines())
                 inquiryElements.Add(new InquiryElement(defenderRangedMachine, defenderRangedMachine.Name.ToString(), null));
-            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(new TextObject("{=SLZzfNPr}Select a Ranged Machine").ToString(), string.Empty, inquiryElements, false, 1, GameTexts.FindText("str_done").ToString(), "", selectedElements => selectedSlot.SetMachineType(selectedElements[0].Identifier as SiegeEngineType), null));
+            MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(new TextObject("{=SLZzfNPr}Select a Ranged Machine").ToString(), string.Empty, inquiryElements, false, 1, inquiryElements.Count, GameTexts.FindText("str_done").ToString(), "", selectedElements => selectedSlot.SetMachineType(selectedElements[0].Identifier as SiegeEngineType), null));
         }
         private void OnResetMachineSelection(CustomBattleSiegeMachineVM selectedSlot) => selectedSlot.SetMachineType((SiegeEngineType)null);
     }

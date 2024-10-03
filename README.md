@@ -3,9 +3,10 @@
 A mod for Mount&Blade Bannerlord that provides more powerful custom battle.
 
 ## Current Version  
-v1.2.8  
+v1.2.11  
 
 ## Mod File
+[Release v1.2.11](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.2.11) 
 [Release v1.2.8](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.2.8)  
 [Release v1.1.6](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.1.6)  
 [Release v1.0.2](https://github.com/cookgreen/EnhancedBattleTest/releases/tag/ebt-v1.0.2)  
@@ -79,7 +80,7 @@ This mod has a dependency on [Bannerlord.Harmony](https://www.nexusmods.com/moun
 - If the game crashed when loading a siege battle or clicking "Begin assault", try to change the scene level. Some scenes lacks data for some scene level, so this may help.
 
 ## Source code
-The source code is available at [GitHub](https://github.com/lzh-mb-mod/EnhancedBattleTest).
+The source code is available at [GitHub](https://github.com/cookgreen/EnhancedBattleTest).
 
 ## Contributor
 The contributors to this project are:
